@@ -1,0 +1,94 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+coverage.xml
+
+# Type checkers
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Linting
+.ruff_cache/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# FastAPI/Uvicorn logs
+*.log
+
+# SQLite databases
+*.db
+*.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Local settings
+instance/
+*.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Generated files
+*.pid
+
+# Docker
+docker-compose.override.yml
+
+# Alembic migrations cache
+alembic/versions/__pycache__/
+
+# Static and media uploads (si aplica)
+media/
+uploads/
+
+# PyCharm
+.idea/
+
+# VS Code settings (opcional)
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
