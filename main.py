@@ -9,7 +9,13 @@ from supabase import create_client, Client
 from dotenv import load_dotenv
 
 load_dotenv()
-supabase: Client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_PUBLISHABLE_KEY"))
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_PUBLISHABLE_KEY")
+
+if SUPABASE_URL and SUPABASE_KEY:
+    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+else:
+    supabase = None
 
 
 class FormData(BaseModel):
@@ -139,6 +145,12 @@ def create_item_form(
 
 @app.post("/tasks/")
 def create_task(task: Task):
+    if supabase is None:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Supabase is not configured. Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY."
+        )
+
     data = supabase.table("task").insert({
         "title": task.title,
         "description": task.description
@@ -147,5 +159,11 @@ def create_task(task: Task):
 
 @app.get("/tasks/")
 def get_tasks():
+    if supabase is None:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Supabase is not configured. Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY."
+        )
+
     data = supabase.table("task").select("*").execute()
     return data.data
