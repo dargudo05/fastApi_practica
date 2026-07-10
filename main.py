@@ -49,7 +49,7 @@ def read_item(item_id):
 
 
 @app.get("/items/")
-def read_item(skip: int = 0, limit: int = 10, q: str | None = None):
+def read_items(skip: int = 0, limit: int = 10, q: str | None = None):
     results = fake_items_db[skip: skip + limit]
 
     if q:
@@ -105,7 +105,7 @@ def update_item_with_query(
 
 
 @app.post("/items_form/")
-def create_item(
+def create_item_form(
     item_name: Annotated[str, Form()],
     description: Annotated[str, Form()],
     price: Annotated[float, Form()],
@@ -139,13 +139,13 @@ def create_item(
 
 @app.post("/tasks/")
 def create_task(task: Task):
-  data = supabase.table("task").insert({
-      "title": task.title,
-      "description": task.description
-  }).execute()
-  return data.data
+    data = supabase.table("task").insert({
+        "title": task.title,
+        "description": task.description
+    }).execute()
+    return data.data
 
 @app.get("/tasks/")
 def get_tasks():
-   data = supabase.table("task").select("*").execute()
-   return data.data
+    data = supabase.table("task").select("*").execute()
+    return data.data
